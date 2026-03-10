@@ -1,4 +1,3 @@
-console.log("SERVICE FILE LOADED - V2")
 import { db } from "../config/database"
 import { Contact } from "../types/contactTypes"
 
