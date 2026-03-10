@@ -2,7 +2,6 @@ console.log("SERVICE FILE LOADED - V2")
 import { db } from "../config/database"
 import { Contact } from "../types/contactTypes"
 
-
 export async function resolveIdentity(email?: string | null, phoneNumber?: string | null) {
   const inputEmail = email ?? undefined
   const inputPhone = phoneNumber ?? undefined
@@ -49,7 +48,7 @@ export async function resolveIdentity(email?: string | null, phoneNumber?: strin
       [inputEmail ?? null, inputPhone ?? null]
     )
     return {
-      primaryContatctId: res.insertId,
+      primaryContactId: res.insertId,
       emails: inputEmail ? [inputEmail] : [],
       phoneNumbers: inputPhone ? [inputPhone] : [],
       secondaryContactIds: []
@@ -59,7 +58,6 @@ export async function resolveIdentity(email?: string | null, phoneNumber?: strin
   let bfsIdx = 0
   while (bfsIdx < bfsQueue.length) {
     const cur = bfsQueue[bfsIdx++]
-
 
     if (cur.email) {
       const rows = await query(`SELECT * FROM Contact WHERE email = ? AND deletedAt IS NULL`, [cur.email])
@@ -168,7 +166,7 @@ export async function resolveIdentity(email?: string | null, phoneNumber?: strin
   }
 
   const secondaryContactIds = secondaries.map(c => c.id)
-  const response = { primaryContatctId: canonical.id, emails, phoneNumbers, secondaryContactIds }
+  const response = { primaryContactId: canonical.id, emails, phoneNumbers, secondaryContactIds }
   // console.log("Response", JSON.stringify(response))
   return response
 }
