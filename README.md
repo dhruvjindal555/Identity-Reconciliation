@@ -13,6 +13,7 @@ POST https://identity-reconciliation-1-jzls.onrender.com/identify
 > Deployed on [Render.com](https://render.com) with [Aiven](https://aiven.io) MySQL as the database.
 
 ---
+> ⚠️ Note: The live database may contain existing test data from previous runs. Results may reflect that data.
 
 ## 📋 Problem Statement
 
